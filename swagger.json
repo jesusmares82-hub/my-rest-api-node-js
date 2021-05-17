@@ -1,0 +1,321 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "IMDB REST API",
+        "version": "1.0",
+        "description": "Estoy muy feliz, es mi primera Rest Api!"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api/v1",
+            "description": "Development"
+        },
+        {
+            "url": "http://heroku/myapp/api/v1",
+            "description": "Production"
+        }
+    ],
+    "paths": {
+        "/actors/:id": {
+            "delete": {
+                "description": "Sirve para eliminar un actor con su id especificado.",
+                "tags": [
+                    "Actors"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro eliminado"
+                    }
+                }
+            },
+            "put": {
+                "description": "Actualiza un registro con su id especificado.",
+                "tags": [
+                    "Actors"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Actors"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Registro actualizado"
+                    }
+                }
+            },
+            "get": {
+                "description": "Busca un registro según su id.",
+                "tags": [
+                    "Actors"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro encontrado"
+                    }
+                }
+            }
+        },
+        "/actors": {
+            "get": {
+                "description": "Sirve para obtener todos los actores de la BD",
+                "tags": [
+                    "Actors"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registros encontrados"
+                    }
+                }
+            },
+            "post": {
+                "description": "Sirve para crear un nuevo Actor.",
+                "tags": [
+                    "Actors"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Actors"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registro creado"
+                    }
+                }
+            }
+        },
+        "/directors/:id": {
+            "delete": {
+                "description": "Sirve para eliminar un actor con su id especificado.",
+                "tags": [
+                    "Directors"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro eliminado"
+                    }
+                }
+            },
+            "put": {
+                "description": "Actualiza un registro con su id especificado.",
+                "tags": [
+                    "Directors"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Directors"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Registro actualizado"
+                    }
+                }
+            },
+            "get": {
+                "description": "Busca un registro según su id.",
+                "tags": [
+                    "Directors"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro encontrado"
+                    }
+                }
+            }
+        },
+        "/directors": {
+            "get": {
+                "description": "Sirve para obtener todos los actores de la BD",
+                "tags": [
+                    "Directors"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registros encontrados"
+                    }
+                }
+            },
+            "post": {
+                "description": "Sirve para crear un nuevo Actor.",
+                "tags": [
+                    "Directors"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Directors"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registro creado"
+                    }
+                }
+            }
+        },
+        "/users/:id": {
+            "delete": {
+                "description": "Sirve para eliminar un actor con su id especificado.",
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro eliminado"
+                    }
+                }
+            },
+            "put": {
+                "description": "Actualiza un registro con su id especificado.",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Registro actualizado"
+                    }
+                }
+            },
+            "get": {
+                "description": "Busca un registro según su id.",
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro encontrado"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "description": "Sirve para obtener todos los actores de la BD",
+                "tags": [
+                    "Users"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registros encontrados"
+                    }
+                }
+            },
+            "post": {
+                "description": "Sirve para crear un nuevo Actor.",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Users"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registro creado"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Actors": {
+                "properties": {
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "dob": {
+                        "type": "string"
+                    },
+                    "biography": {
+                        "type": "string"
+                    },
+                    "profile_photo": {
+                        "type": "string"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Directors": {
+                "properties": {
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "dob": {
+                        "type": "string"
+                    },
+                    "biography": {
+                        "type": "string"
+                    },
+                    "profile_photo": {
+                        "type": "string"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "Users": {
+                "properties": {
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "reset_token": {
+                        "type": "string"
+                    },
+                    "active": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}
