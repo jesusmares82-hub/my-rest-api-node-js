@@ -19,7 +19,7 @@ const upload = multer({storage: storage})
 
 router.get('/actors', verifyToken, getAll)
 router.get('/actors/:id', verifyToken, getId)
-router.post('/actors', verifyToken, create)
+router.post('/actors', create)
 router.put('/actors/:id/profile', verifyToken, upload.single('profile_photo'), updatePhoto)
 router.put('/actors/:id', verifyToken, update)
 router.delete('/actors/:id', verifyToken, deleteActors)

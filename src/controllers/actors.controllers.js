@@ -51,7 +51,7 @@ const create = async (req, res, next) => {
     try {
         let { first_name, last_name, dob, biography, profile_photo, active } = req.body;
         await actors.create({ first_name, last_name, dob, biography, profile_photo, active })
-        res.send('Estamos creando un nuevo registro')
+        res.status(201).send('Estamos creando un nuevo registro')
     } catch (error) {
         next(error)
     }

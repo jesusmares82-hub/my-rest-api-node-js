@@ -36,3 +36,4 @@
 ::1 - - [16/May/2021:19:48:17 +0000] "GET /actors HTTP/1.1" 404 145 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
 ::1 - - [16/May/2021:19:48:31 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36"
 ::1 - - [17/May/2021:14:05:01 +0000] "GET /api/v1/ HTTP/1.1" 404 146 "-" "PostmanRuntime/7.28.0"
+::1 - - [19/May/2021:15:15:11 +0000] "GET /api/v1/login HTTP/1.1" 404 151 "-" "PostmanRuntime/7.28.0"

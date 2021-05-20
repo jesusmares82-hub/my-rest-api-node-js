@@ -17,7 +17,7 @@ const login = async (req, res, next) => {
                     algorithm: "HS512",
                     expiresIn: "2 days"
                 });
-                // console.log(token);
+                console.log(token);
                 res.send("Auth Successful");
             } else {
                 res.send("Wrong username or password.");

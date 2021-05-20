@@ -9,10 +9,6 @@
         {
             "url": "http://localhost:3000/api/v1",
             "description": "Development"
-        },
-        {
-            "url": "http://heroku/myapp/api/v1",
-            "description": "Production"
         }
     ],
     "paths": {
@@ -49,6 +45,11 @@
                 }
             },
             "get": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
                 "description": "Busca un registro según su id.",
                 "tags": [
                     "Actors"
@@ -62,6 +63,11 @@
         },
         "/actors": {
             "get": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
                 "description": "Sirve para obtener todos los actores de la BD",
                 "tags": [
                     "Actors"
@@ -126,6 +132,11 @@
                 }
             },
             "get": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
                 "description": "Busca un registro según su id.",
                 "tags": [
                     "Directors"
@@ -139,6 +150,11 @@
         },
         "/directors": {
             "get": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
                 "description": "Sirve para obtener todos los actores de la BD",
                 "tags": [
                     "Directors"
@@ -203,6 +219,11 @@
                 }
             },
             "get": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
                 "description": "Busca un registro según su id.",
                 "tags": [
                     "Users"
@@ -216,6 +237,11 @@
         },
         "/users": {
             "get": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
                 "description": "Sirve para obtener todos los actores de la BD",
                 "tags": [
                     "Users"
@@ -315,6 +341,13 @@
                         "type": "boolean"
                     }
                 }
+            }
+        },
+        "securitySchemes": {
+            "jwt_token": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
             }
         }
     }
