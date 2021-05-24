@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [0, 50],
         notEmpty: true,
-        isAlpha: true,
+        // isAlpha: true,
       }
     },
     last_name: {
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [0, 50],
         notEmpty: true,
-        isAlpha: true,
+        // isAlpha: true,
       }
     },
     dob: {

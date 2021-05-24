@@ -1,4 +1,5 @@
 require('dotenv').config()
+// require('../views/')
 const googleapis = require('googleapis');
 const nodemailer = require('nodemailer');
 const hbs = require('nodemailer-express-handlebars')
@@ -37,7 +38,7 @@ const createTransporte = async () => {
 }
 
 const sendEmail = async (options) => {
-    try {
+    // try {
         const gmailTransporter = await createTransporte();
         gmailTransporter.use('compile', hbs({
             viewEngine: exphbs(),
@@ -45,14 +46,16 @@ const sendEmail = async (options) => {
         }))
         const data = await gmailTransporter.sendMail(options);
         console.log(data);
-    } catch (error) {
-        console.log(error)
-    }
+    // } catch (erro) {
+    //     console.log(erro)
+    // }
 }
 
-// const data = fs.readFileSync('../views/mail.handlebars', {encoding: 'utf8'})
+const data = fs.readFileSync('src/views/email.handlebars', {encoding: 'utf-8'})
+
 
 
 module.exports = {
     sendEmail
 }
+

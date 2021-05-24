@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 const { sendEmail, emailOptions } = require('./herpers/nodemailer')
-const app = require('./server')
 const fs = require('fs')
 const cors = require('cors')
 const helmet = require('helmet');
@@ -15,6 +14,9 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
 const hbs = require('nodemailer-express-handlebars')
 const { options } = require('./routers/actors')
+
+
+const app = express();
 
 
 
@@ -44,13 +46,13 @@ app.use((err, req, res, next) => {
     err.errors.map( er => {
         errObj[er.path] = er.message;
     })
-    return res.status(400).send(errObj);
+    return res.status(400).json(errObj);
   } 
-  console.error(err.stack);
   res.status(500).send('Ups, tenemos un problema en el servidor, intentelo mas tarde!');
 });
 
  
-app.use(logger('combined', { stream: fs.createWriteStream(('./access.log'), { flags: 'a' })}))
+ app.use(logger('combined', { stream: fs.createWriteStream(('./access.log'), { flags: 'a' })}))
 
   
+module.exports = app;

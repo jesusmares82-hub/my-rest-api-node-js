@@ -1,4 +1,4 @@
-const { actors } = require('../models')
+const { actors }  = require('../models')
 const jwt = require("jsonwebtoken");
 
 const getAll = async (req, res, next) => {
@@ -30,7 +30,7 @@ const getAll = async (req, res, next) => {
 
         result.actorsDataPagination = actorsData.slice(startIndex, endIndex);
 
-        res.json(result);
+        res.status(201).json(result);
 
     } catch (error) {
         next(error)
@@ -47,11 +47,11 @@ const getId = async (req, res, next) => {
     }
 }
 
-const create = async (req, res, next) => {
+const createf = async (req, res, next) => {
     try {
         let { first_name, last_name, dob, biography, profile_photo, active } = req.body;
-        await actors.create({ first_name, last_name, dob, biography, profile_photo, active })
-        res.status(201).send('Estamos creando un nuevo registro')
+        let actor = await actors.create({ first_name, last_name, dob, biography})
+        res.status(201).json(actor);
     } catch (error) {
         next(error)
     }
@@ -61,8 +61,8 @@ const update = async (req, res, next) => {
     try {
         let { id } = req.params;
         let { first_name, last_name, dob, biography, profile_photo, active } = req.body
-        await actors.update({ first_name, last_name, dob, biography, profile_photo, active }, { where: { id } })
-        res.send('<h1>Estamos actualizando un registro</h1>')
+        let actorsUpdate = await actors.update({ first_name, last_name, dob, biography, profile_photo, active }, { where: { id } })
+        res.status(201).json(actorsUpdate)
     } catch (error) {
         next(error)
     }
@@ -71,8 +71,8 @@ const update = async (req, res, next) => {
 const deleteActors = async (req, res, next) => {
     try {
         let { id } = req.params
-        await actors.destroy({ where: { id: id } })
-        res.send('<h1>Estamos eliminando un registro</h1>')
+        let deleteActors = await actors.destroy({ where: { id: id } })
+        res.status(201).json(deleteActors);
     } catch (error) {
         next(error)
     }
@@ -104,7 +104,7 @@ const updatePhoto = async (req, res, next) => {
         let actorsPhoto = await actors.findAll({ raw: true, where: { id: id } });
         let updateActorsPhoto = await actors.update(req.body, { where: { id: id } });
         console.log(updateActorsPhoto);
-        res.send('Estamos porbando el put de gallery')
+        res.status(201).json(updateActorsPhoto)
     } catch (error) {
         next(error)
     }
@@ -113,7 +113,7 @@ const updatePhoto = async (req, res, next) => {
 module.exports = {
     getAll,
     getId,
-    create,
+    createf,
     update,
     deleteActors,
     verifyToken,

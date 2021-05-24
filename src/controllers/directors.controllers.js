@@ -1,11 +1,12 @@
 const { directors } = require('../models')
+const jwt = require("jsonwebtoken");
 
 const getAll =  async (req, res, next) => {
     try {
         const page = parseInt(req.query.page);
         const limit = parseInt(req.query.limit);
 
-        console.log(page, limit);
+        // console.log(page, limit);
 
         let startIndex = (page - 1) * limit;
         let endIndex = page * limit;
@@ -31,7 +32,7 @@ const getAll =  async (req, res, next) => {
 
         result.actorsDataPagination = actorsData.slice(startIndex, endIndex);
 
-        res.json(result);
+        res.status(201).json(result);
     } catch (error) {
         next(error)
     }
@@ -41,7 +42,7 @@ const getId = async (req, res, next) => {
     try {
         let id = req.params.id;
         const actorId = await directors.findAll({raw: true, where: {id: id}})
-        res.json(actorId);
+        res.status(201).json(actorId);
     } catch (error) {
         next(error)
     }
@@ -50,8 +51,8 @@ const getId = async (req, res, next) => {
 const create = async (req, res, next) => {
     try {
         let { first_name, last_name, dob, biography, profile_photo, active } = req.body;
-        await directors.create({first_name, last_name, dob, biography, profile_photo, active})
-        res.send('Estamos creando un nuevo registro')
+        let createDirectors = await directors.create({first_name, last_name, dob, biography, profile_photo, active})
+        res.status(201).json(createDirectors)
     } catch (error) {
         next(error)
     }
@@ -61,8 +62,8 @@ const update = async (req, res, next) => {
     try {
         let { id } = req.params;
         let { first_name, last_name, dob, biography, profile_photo, active } = req.body
-        await directors.update({first_name, last_name, dob, biography, profile_photo, active}, {where: {id}})
-        res.send('<h1>Estamos actualizando un registro</h1>')
+        let updateDirector = await directors.update({first_name, last_name, dob, biography, profile_photo, active}, {where: {id}})
+        res.status(201).json(updateDirector)
     } catch (error) {
         next(error)
     }
@@ -71,8 +72,8 @@ const update = async (req, res, next) => {
 const deleteActors = async (req, res, next) => {
     try {
         let { id } = req.params
-        await directors.destroy({where: {id: id}})
-        res.send('<h1>Estamos eliminando un registro</h1>')
+        let deleDirectors = await directors.destroy({where: {id: id}})
+        res.status(201).json(deleDirectors);
     } catch (error) {
         next(error)
     }

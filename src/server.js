@@ -1,11 +1,8 @@
-const express = require('express');
-
-const app = express();
+const app = require('./app')
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
-    // console.log(`Escuchando en el puerto ${PORT}`)
+    console.log(`Escuchando en el puerto ${PORT}`)
 })
 
-module.exports = app;

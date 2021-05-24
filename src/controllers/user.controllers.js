@@ -88,7 +88,7 @@ const create = async (req, res, next) => {
         emailOptions["context"] = { title:  `http://localhost:3000/api/v1/verify/${hash}`, name: first_name, }
         sendEmail(emailOptions);
       
-        res.send('Estamos creando un nuevo registro')
+        res.status(201).json(newUsers);
 
     } catch (error) {
         next(error)
@@ -100,8 +100,8 @@ const update = async (req, res, next) => {
         let { id } = req.params;
         let { first_name, last_name, email, reset_token, active } = req.body
         const password = await bcrypt.hash(req.body.password, saltRounds);
-        await users.update({ first_name, last_name, email, password, reset_token, active }, { where: { id } })
-        res.send('<h1>Estamos actualizando un registro</h1>')
+        let updateUsers = await users.update({ first_name, last_name, email, password }, { where: { id } })
+        res.status(203).json(updateUsers);
     } catch (error) {
         next(error)
     }
@@ -110,8 +110,8 @@ const update = async (req, res, next) => {
 const deleteActors = async (req, res, next) => {
     try {
         let { id } = req.params
-        await users.destroy({ where: { id: id } })
-        res.send('<h1>Estamos eliminando un registro</h1>')
+        let deleteUser = await users.destroy({ where: { id: id } })
+        res.status(201).json(deleteUser);
     } catch (error) {
         next(error)
     }

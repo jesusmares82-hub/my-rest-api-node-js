@@ -18,7 +18,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       biography: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
       profile_photo: {
         type: Sequelize.STRING
@@ -27,11 +27,11 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       created_at: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.DATE
       },
       updated_at: {
-        allowNull: false,
+        // allowNull: false,
         type: Sequelize.DATE
       }
     });

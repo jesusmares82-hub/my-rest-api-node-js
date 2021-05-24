@@ -4,8 +4,9 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "dev": "nodemon ./src/app.js",
-    "test": "jest"
+    "dev": "nodemon ./src/server.js",
+    "test": "jest --detectOpenHandles",
+    "coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
