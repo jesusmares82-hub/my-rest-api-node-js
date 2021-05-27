@@ -34,7 +34,7 @@ app.use('/api/v1', directorsRouter)
 app.use('/api/v1', contentsRouter);
 app.use('/api/v1', usersRouter)
 app.use('/api/v1', login);
-app.get('/api/v1', (req, res, next) => {
+app.get('/', (req, res, next) => {
   try {
     res.send('<h1>Bienvenido a mi REST API</h1>')
   } catch (error) {
