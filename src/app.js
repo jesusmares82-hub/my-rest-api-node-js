@@ -34,13 +34,7 @@ app.use('/api/v1', directorsRouter)
 app.use('/api/v1', contentsRouter);
 app.use('/api/v1', usersRouter)
 app.use('/api/v1', login);
-app.get('/', (req, res, next) => {
-  try {
-    res.send('<h1>Bienvenido a mi REST API</h1>')
-  } catch (error) {
-    next(error)
-  }
-})
+
 
 app.use((err, req, res, next) => {
   if (err.name = 'SequelizeValidationError') {
