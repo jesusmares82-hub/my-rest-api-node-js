@@ -14,17 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     first_name: {
       type: DataTypes.STRING, 
       validate: {
-        len: [0, 50],
         notEmpty: true,
-        // isAlpha: true,
+        
       }
     },
     last_name: {
       type: DataTypes.STRING, 
       validate: {
-        len: [0, 50],
         notEmpty: true,
-        // isAlpha: true,
       }
     },
     dob: {

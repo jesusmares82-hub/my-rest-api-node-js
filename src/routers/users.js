@@ -1,5 +1,6 @@
 const { Router } = require('express')
-const { getAll, getId, create, update, deleteActors, verifyToken, verify } = require('../controllers/user.controllers')
+const { getAll, getId, create, update, deleteActors,  verify } = require('../controllers/user.controllers');
+const verifyToken = require('../middlewares/auth.middlewares')
 
 const router = Router()
 

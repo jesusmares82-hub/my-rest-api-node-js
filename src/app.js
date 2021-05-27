@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const actorsRouter = require('./routers/actors')
 const directorsRouter = require('./routers/directors')
 const usersRouter = require('./routers/users')
+const contentsRouter = require('./routers/contents')
 const login = require('./routers/auth')
 const logger = require('morgan')
 const { users } = require('../src/models')
@@ -30,6 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/v1', actorsRouter)
 app.use('/api/v1', directorsRouter)
+app.use('/api/v1', contentsRouter);
 app.use('/api/v1', usersRouter)
 app.use('/api/v1', login);
 app.get('/api/v1', (req, res, next) => {

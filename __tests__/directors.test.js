@@ -4,6 +4,7 @@ const { users, directors } = require('../src/models')
 
 let idCreateUsers = 0;
 let id = 0;
+let idUpdate = 0;
 let token = '';
 
 beforeAll(async (done) => {
@@ -18,7 +19,7 @@ beforeAll(async (done) => {
     let resulCreateUser = await request(app).post('/api/v1/users').send(createUser);
 
     idCreateUsers = resulCreateUser.body.id;
-    console.log(idCreateUsers);
+    
 
     let loginUser = {
         email: 'noludis1976@gmail.com',
@@ -28,7 +29,6 @@ beforeAll(async (done) => {
     let loginSuccess = await request(app).post('/api/v1/login').send(loginUser)
 
     token = loginSuccess.body.token;
-    // console.log(token);
 
     done();
 })
@@ -43,7 +43,7 @@ describe('Estamos probando los endepoints de directores', () => {
             biography: 'Estoy trabajando duro para que un día me llamen ingeniero',
         }
 
-        let response = await request(app).post("/api/v1/directors").send(direcCreate).set('access-token', token);
+        let response = await request(app).post("/api/v1/directors").send(direcCreate).set('authorization', token);
         id = response.body.id;
         console.log(response.body);
 
@@ -57,7 +57,7 @@ describe('Estamos probando los endepoints de directores', () => {
     it('Actualizando un registro', async (done) => {
         let actorsUpdate = { first_name: 'Especialista' }
 
-        let updateActors = await request(app).put(`/api/v1/directors/${id}`).send(actorsUpdate).set('access-token', token);
+        let updateActors = await request(app).put(`/api/v1/directors/${id}`).send(actorsUpdate).set('authorization', token);
 
         expect(updateActors.status).toBe(201);
         expect(updateActors).toHaveProperty("text", "[1]");
@@ -67,17 +67,24 @@ describe('Estamos probando los endepoints de directores', () => {
 
     it('Trayendo la lista de todos los directors', async (done) => {
 
-        let getAllDirectors = await request(app).get('/api/v1/directors?page=1&limit=5').set('access-token', token);
-        console.log(getAllDirectors.body)
+        let getAllDirectors = await request(app).get('/api/v1/directors?page=1&limit=5').set('authorization', token);
+        // console.log(getAllDirectors.body)
+
+      
+        let getAllActorsArray = getAllDirectors.body.actorsDataPagination;
+        let getAllLength = getAllActorsArray.length - 1;
+        let newGetAll =  getAllDirectors.body.actorsDataPagination[getAllLength];
+
+        // console.log(newGetAll);
 
         expect(getAllDirectors.status).toBe(201)
-        expect(getAllDirectors.body.actorsDataPagination[0]).toHaveProperty('first_name', 'Especialista');
+        expect(newGetAll).toHaveProperty('first_name', 'Especialista');
 
         done();
     })
 
     it('Trayendo la información de un solo director', async (done) => {
-        let getAllActors = await request(app).get(`/api/v1/directors/${id}`).set('access-token', token);
+        let getAllActors = await request(app).get(`/api/v1/directors/${id}`).set('authorization', token);
 
         expect(getAllActors.status).toBe(201)
         expect(getAllActors.body[0]).toHaveProperty('id', id)
@@ -87,9 +94,8 @@ describe('Estamos probando los endepoints de directores', () => {
 
     it('Eliminando un director', async (done) => {
 
-        let deleActors = await request(app).delete(`/api/v1/directors/${id}`).set('access-token', token);
-        // console.log(deleActors);
-
+        let deleActors = await request(app).delete(`/api/v1/directors/${id}`).set('authorization', token);
+       
         expect(deleActors.status).toBe(201);
         expect(deleActors).toHaveProperty("body", 1);
 
@@ -97,8 +103,7 @@ describe('Estamos probando los endepoints de directores', () => {
     })
 
     afterAll(async (done) => {
-        // await directors.destroy({where: {id: id}})
-        await users.destroy({ where: { id: idCreateUsers } });
+        let deleteUser = await request(app).delete(`/api/v1/users/${idCreateUsers}`).set('authorization', token);        
         done();
     })
 })

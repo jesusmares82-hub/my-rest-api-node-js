@@ -20,18 +20,32 @@ const getAll = async (req, res, next) => {
 
         const result = {};
         if (endIndex < actorsData.length) {
-            let pageNext = page + 1
-            console.log(pageNext);
-            result.next = {
-                page: pageNext,
-                limit: limit
+            let arrayData = actorsData.slice(startIndex, endIndex);
+            result._links = {
+                base: "http://localhost:8080/users",
+                next: `http://localhost:3000/api/v1/users?page=${ page + 1}&limit=5`,
+                self: `http://localhost:3000/api/v1/users?page=${ page }&limit=5`,
+            }
+
+            result.info = {
+                limit: limit,
+                size: arrayData.length,
+                start: actorsData.length - limit
             }
         }
 
         if (startIndex > 0) {
-            result.previous = {
-                page: page - 1,
-                limit: limit
+            let arrayData = actorsData.slice(startIndex, endIndex);
+            result._links = {
+                base: "http://localhost:8080/users",
+                previous: `http://localhost:3000/api/v1/users?page=${ page - 1}&limit=5`,
+                self: `http://localhost:3000/api/v1/users?page=${ page }&limit=5`,
+            }
+
+            result.info = {
+                limit: limit,
+                size: arrayData.length,
+                start: actorsData.length - limit
             }
         }
 
@@ -117,25 +131,6 @@ const deleteActors = async (req, res, next) => {
     }
 }
 
-const verifyToken = ((req, res, next) => {
-    const token = req.headers['access-token'];
-
-    if (token) {
-        jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
-            if (err) {
-                return res.json({ mensaje: 'Token inválido' });
-            } else {
-                req.decoded = decoded;
-                next();
-            }
-        });
-    } else {
-        res.send({
-            mensaje: 'Token no proporcionado.'
-        });
-    }
-});
-
 const verify = async (req, res, next) => {
     try {
         let hast = req.params.hash;
@@ -158,6 +153,5 @@ module.exports = {
     create,
     update,
     deleteActors,
-    verifyToken,
     verify
 }

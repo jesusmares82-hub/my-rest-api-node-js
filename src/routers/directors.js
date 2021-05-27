@@ -1,8 +1,9 @@
 const { Router } = require('express')
 const multer = require('multer');
 const mimetypes = require('mime-types')
-const { getAll, getId, create, update, deleteActors, verifyToken, updatePhoto } = require('../controllers/directors.controllers')
+const { getAll, getId, create, update, deleteActors,  updatePhoto } = require('../controllers/directors.controllers')
 const { gallery } = require('../controllers/gallery.controller')
+const verifyToken = require('../middlewares/auth.middlewares')
 
 
 const storage = multer.diskStorage({

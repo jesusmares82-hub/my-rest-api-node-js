@@ -2,7 +2,8 @@ const { Router } = require('express')
 const multer = require('multer');
 const mimetypes = require('mime-types')
 const { gallery } = require('../controllers/gallery.controller')
-const { getAll, getId, createf, update, deleteActors, verifyToken, updatePhoto } = require('../controllers/actors.controllers')
+const { getAll, getId, createf, update, deleteActors, updatePhoto } = require('../controllers/actors.controllers');
+const verifyToken = require('../middlewares/auth.middlewares')
 
 const storage = multer.diskStorage({
     destination: (req, file, cd) => {

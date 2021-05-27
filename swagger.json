@@ -12,11 +12,27 @@
         }
     ],
     "paths": {
-        "/actors/:id": {
+        "/actors/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
                 "description": "Sirve para eliminar un actor con su id especificado.",
                 "tags": [
                     "Actors"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del actor a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -25,9 +41,25 @@
                 }
             },
             "put": {
-                "description": "Actualiza un registro con su id especificado.",
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "description": "Actualiza el registro de un actor con su id especificado.",
                 "tags": [
                     "Actors"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del actor a Actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
                 ],
                 "requestBody": {
                     "content": {
@@ -54,6 +86,17 @@
                 "tags": [
                     "Actors"
                 ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del actor a buscar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Registro encontrado"
@@ -68,6 +111,26 @@
                         "jwt_token": []
                     }
                 ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Pagina a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limite de datos por pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "description": "Sirve para obtener todos los actores de la BD",
                 "tags": [
                     "Actors"
@@ -79,6 +142,11 @@
                 }
             },
             "post": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
                 "description": "Sirve para crear un nuevo Actor.",
                 "tags": [
                     "Actors"
@@ -101,9 +169,25 @@
         },
         "/directors/:id": {
             "delete": {
-                "description": "Sirve para eliminar un actor con su id especificado.",
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "description": "Sirve para eliminar un director con su id especificado.",
                 "tags": [
                     "Directors"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del director a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -112,9 +196,25 @@
                 }
             },
             "put": {
-                "description": "Actualiza un registro con su id especificado.",
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "description": "Actualiza el registro de un direcor con su id especificado.",
                 "tags": [
                     "Directors"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del director que quremos actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
                 ],
                 "requestBody": {
                     "content": {
@@ -141,6 +241,17 @@
                 "tags": [
                     "Directors"
                 ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del director a buscar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Registro encontrado"
@@ -155,7 +266,27 @@
                         "jwt_token": []
                     }
                 ],
-                "description": "Sirve para obtener todos los actores de la BD",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Pagina a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limite de datos por pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "description": "Sirve para obtener todos los directores de la BD",
                 "tags": [
                     "Directors"
                 ],
@@ -166,7 +297,12 @@
                 }
             },
             "post": {
-                "description": "Sirve para crear un nuevo Actor.",
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "description": "Sirve para crear un nuevo director.",
                 "tags": [
                     "Directors"
                 ],
@@ -186,9 +322,180 @@
                 }
             }
         },
+        "/contents": {
+            "get": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "description": "Sirve para obtener todo el contenido de la BD",
+                "tags": [
+                    "Contents"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Pagina a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limite de datos por pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Registros encontrados"
+                    }
+                }
+            },
+            "post": {
+                "description": "Sirve para crear un nuevo contenido.",
+                "tags": [
+                    "Contents"
+                ],
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contents"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registro creado"
+                    }
+                }
+            }
+        },
+        "/contents/:id": {
+            "get": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del contenido a buscar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "description": "Busca un contenido según su id.",
+                "tags": [
+                    "Contents"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Registro encontrado"
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del contenido a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "description": "Sirve para eliminar un contenido con su id especificado.",
+                "tags": [
+                    "Contents"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registro eliminado"
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del contenido que deseamos actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "description": "Actualiza un registro con su id especificado.",
+                "tags": [
+                    "Contents"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contents"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Registro actualizado"
+                    }
+                }
+            }
+        },
         "/users/:id": {
             "delete": {
-                "description": "Sirve para eliminar un actor con su id especificado.",
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del usuario a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "description": "Sirve para eliminar un usuario con su id especificado.",
                 "tags": [
                     "Users"
                 ],
@@ -199,6 +506,22 @@
                 }
             },
             "put": {
+                "security": [
+                    {
+                        "jwt_token": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del usuario que deseamos actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "description": "Actualiza un registro con su id especificado.",
                 "tags": [
                     "Users"
@@ -224,7 +547,18 @@
                         "jwt_token": []
                     }
                 ],
-                "description": "Busca un registro según su id.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del usuario a buscar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "description": "Busca un usario según su id.",
                 "tags": [
                     "Users"
                 ],
@@ -242,9 +576,29 @@
                         "jwt_token": []
                     }
                 ],
-                "description": "Sirve para obtener todos los actores de la BD",
+                "description": "Sirve para obtener todos los usuarios de la BD",
                 "tags": [
                     "Users"
+                ],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Pagina a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limite de datos por pagina",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
                 ],
                 "responses": {
                     "200": {
@@ -253,7 +607,7 @@
                 }
             },
             "post": {
-                "description": "Sirve para crear un nuevo Actor.",
+                "description": "Sirve para crear un nuevo usuario.",
                 "tags": [
                     "Users"
                 ],
@@ -269,6 +623,28 @@
                 "responses": {
                     "201": {
                         "description": "Registro creado"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "Inicio de sesión.",
+                "tags": [
+                    "Users"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Login"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario logueado."
                     }
                 }
             }
@@ -339,6 +715,23 @@
                     },
                     "active": {
                         "type": "boolean"
+                    }
+                }
+            },
+            "Login": {
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Contents": {
+                "properties": {
+                    "title": {
+                        "type": "string"
                     }
                 }
             }

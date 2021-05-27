@@ -19,7 +19,7 @@ describe('Probando los endpoints de usuarios', () => {
         let resulCreateUser = await request(app).post('/api/v1/users').send(createUser);
     
         idCreateUsers = resulCreateUser.body.id;
-        console.log(resulCreateUser.body);
+       
 
         expect(resulCreateUser.status).toBe(201);
         expect(resulCreateUser.body).toHaveProperty('id', idCreateUsers); 
@@ -37,8 +37,11 @@ describe('Probando los endpoints de usuarios', () => {
         let loginSuccess = await request(app).post('/api/v1/login').send(loginUser)
 
         token = loginSuccess.body.token;
+        
        
         expect(loginSuccess.status).toBe(200);
+        expect(loginSuccess.body.existsUsers).toHaveProperty('first_name', 'Nohemi')
+        expect(loginSuccess.body.existsUsers).toHaveProperty('email', 'noludis1976@gmail.com')
        
         done()
     }) 
@@ -52,10 +55,7 @@ describe('Probando los endpoints de usuarios', () => {
             password: 'enrique' 
         } 
 
-        let updateResult = await request(app).put(`/api/v1/users/${idCreateUsers}`).send(updateUser).set('access-token', token);
-
-        // console.log(updateResult.text).toBe('[1]');
-        console.log(updateResult.status);
+        let updateResult = await request(app).put(`/api/v1/users/${idCreateUsers}`).send(updateUser).set('authorization', token);
 
         expect(updateResult.text).toBe('[1]');
         expect(updateResult.status).toBe(203)
@@ -66,11 +66,12 @@ describe('Probando los endpoints de usuarios', () => {
 
     it('Eliminando una usuario', async (done) => {
 
-        let deleteUser = await request(app).delete(`/api/v1/users/${idCreateUsers}`).set('access-token', token);
+        let deleteUser = await request(app).delete(`/api/v1/users/${idCreateUsers}`).set('authorization', token);
     
         expect(deleteUser.status).toBe(201);
         expect(deleteUser.body).toBe(1);
 
         done()
     })
+
 })
