@@ -1,6 +1,6 @@
 # IMDB API REST
 
-### This project was created by [Jesús Mares] (https://github.com/jesusmares82-hub) and Diego Mesa at ACADEMLO.
+### This project was created by [Jesús Mares] (https://github.com/degoprisss) and Diego Mesa at ACADEMLO.
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
