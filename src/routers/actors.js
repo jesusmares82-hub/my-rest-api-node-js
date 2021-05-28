@@ -18,13 +18,7 @@ const storage = multer.diskStorage({
 const router = Router()
 const upload = multer({storage: storage})
 
-router.get('/', (req, res, next) => {
-    try {
-        res.send('<h1>Bienvenido a mi REST API</h1>')
-      } catch (error) {
-        next(error)
-      }
-})
+
 router.get('/actors', verifyToken, getAll)
 router.get('/actors/:id', verifyToken, getId)
 router.post('/actors', verifyToken, createf)

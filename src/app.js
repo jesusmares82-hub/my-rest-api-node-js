@@ -20,7 +20,9 @@ const { options } = require('./routers/actors')
 const app = express();
 
 
-
+app.get("/", (req, res) => {
+  res.json({ api: "1.0.0" });
+});
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
