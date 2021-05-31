@@ -1,6 +1,6 @@
 # IMDB API REST
 
-### This project was created by [Jesús Mares] (https://github.com/degoprisss) and Diego Mesa at ACADEMLO.
+### This project was created by [Jesús Mares](https://github.com/jesusmares82-hub/my-rest-api-node-js/) and [Diego Mesa](https://github.com/degoprisss) at ACADEMLO.
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
